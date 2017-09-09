@@ -1,0 +1,13 @@
+img {
+    max-width: 90%;
+    max-height: 60%;
+    width: auto;
+    display:block;
+    border-radius: 5px;
+}
+
+.button-red.button-outline {
+    background-color: transparent;
+    color: red;
+    border-color: red;
+}

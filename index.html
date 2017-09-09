@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>reddit-random-pictures</title>
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/reddit.js@0.1.4/reddit.min.js"></script>
+</head>
+<body>
+<div class="row">
+    <div class="column column-50 column-offset-25">
+        <h1>reddit-random-pictures</h1>
+        <h3>go enter some subreddits!</h3>
+        <div id="inputfield">
+            <form v-on:submit.prevent="addsub">
+                <input type="text" placeholder="/r/" id="subredditfield" v-model="subinput">
+                <button v-on:click="addsub">Add</button>
+                <div class="float-right">
+                    <span v-if="launchable">
+                        <button type="button" v-on:click="getdata">{{ startbutton }}!</button>
+                    </span>
+                    <button type="button" class="button-outline button-red" v-on:click="clearsubs">Clear All</button>
+                </div>
+            </form>
+        </div>
+        <div id="subredditlist" v-if="visible">
+            <ul>
+                <li v-for="sub in subs">
+                    /r/{{ sub.name }}
+                </li>
+            </ul>
+        </div>
+        <div id="picturelist" v-if="visible">
+            <h4>{{ currentPicture.title}}</h4>
+            <img id="pic" v-bind:src="currentPicture.link">
+        </div>
+    </div>
+</div>
+<script src="./js/main.js"></script>
+</body>
+</html>
